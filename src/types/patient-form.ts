@@ -25,7 +25,7 @@ export interface PatientFormData {
 
 export const initialFormData: PatientFormData = {
   patientName: "",
-  date: new Date().toISOString().split("T")[0],
+  date: new Date().toISOString().split("T")[0] || "",
   chiefConcerns: "",
   medicationsSupplements: "",
   dietary: {
