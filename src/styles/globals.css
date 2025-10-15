@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: oklch(40% 0.1 160);
+  --color-primary-foreground: oklch(100% 0 0);
+  --color-secondary: oklch(50% 0.08 40);
+  --color-secondary-foreground: oklch(100% 0 0);
+  --color-muted: oklch(96% 0.02 40);
+  --color-muted-foreground: oklch(45% 0 0);
+  --color-accent: oklch(60% 0.12 280);
+  --color-accent-foreground: oklch(100% 0 0);
+
+  --font-family-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-family-serif: var(--font-lora), ui-serif, Georgia, serif;
+
+  --radius: 0.5rem;
+}
