@@ -1,20 +1,19 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { PHONE, BUSINESS_HOURS, LOCATION } from "@/lib/constants";
-
-export const metadata: Metadata = {
-  title: "New Patient Intro Form",
-  description:
-    "Download our new patient introduction form to complete before your first appointment at Health in Hand.",
-};
+import { PHONE, BUSINESS_HOURS, ADDRESS, CITY_STATE_ZIP } from "@/lib/constants";
+import { NewPatientWebForm } from "@/components/forms/NewPatientWebForm";
+import { useState } from "react";
 
 export default function NewPatientFormPage() {
+  const [showWebForm, setShowWebForm] = useState(false);
+
   return (
     <div className="py-16">
       <Container>
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <h1 className="font-serif text-4xl md:text-5xl font-bold text-primary mb-8">
             New Patient Intro Form
           </h1>
@@ -26,40 +25,81 @@ export default function NewPatientFormPage() {
             <CardContent>
               <p className="text-muted-foreground mb-4">
                 Thank you for choosing Health in Hand for your natural
-                healthcare needs. To help us serve you better, please download
-                and complete our New Patient Introduction Form before your first
+                healthcare needs. To help us serve you better, please complete
+                our New Patient Introduction Form before your first
                 appointment.
+              </p>
+              <p className="text-muted-foreground">
+                You can either fill out the form online and generate a PDF, or
+                download the blank PDF to complete by hand.
               </p>
             </CardContent>
           </Card>
 
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle>Download Form</CardTitle>
+              <CardTitle>Choose Your Option</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                <p className="text-sm text-muted-foreground">
-                  Click the button below to download the PDF form. Print and
-                  complete all sections, then bring it to your first
-                  appointment.
-                </p>
-                <Button asChild size="lg" className="w-full sm:w-auto">
-                  <a
-                    href="/new_patient_intro_form_hih.pdf"
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="border rounded-lg p-4 space-y-3">
+                  <h3 className="font-semibold">Fill Out Online</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Complete the form online and generate a PDF to print or email.
+                  </p>
+                  <Button
+                    onClick={() => setShowWebForm(true)}
+                    size="lg"
+                    className="w-full"
                   >
-                    Download PDF Form
-                  </a>
-                </Button>
-                <p className="text-xs text-muted-foreground">
-                  If you have questions, please call us at {PHONE}
-                </p>
+                    Fill Out Online
+                  </Button>
+                </div>
+                <div className="border rounded-lg p-4 space-y-3">
+                  <h3 className="font-semibold">Download PDF</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Download the blank PDF form to print and complete by hand.
+                  </p>
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="w-full"
+                  >
+                    <a
+                      href="/pdfs/new_patient_intro_form_hih.pdf"
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Download PDF
+                    </a>
+                  </Button>
+                </div>
               </div>
+              <p className="text-xs text-muted-foreground mt-4 text-center">
+                If you have questions, please call us at {PHONE}
+              </p>
             </CardContent>
           </Card>
+
+          {showWebForm && (
+            <div className="mb-8">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="font-serif text-2xl font-bold text-primary">
+                  Complete Form Online
+                </h2>
+                <Button
+                  onClick={() => setShowWebForm(false)}
+                  variant="outline"
+                  size="sm"
+                >
+                  Hide Form
+                </Button>
+              </div>
+              <NewPatientWebForm />
+            </div>
+          )}
 
           <Card className="mb-8">
             <CardHeader>
@@ -123,7 +163,8 @@ export default function NewPatientFormPage() {
 
                 <div>
                   <p className="font-semibold text-sm">Location</p>
-                  <p className="text-sm text-muted-foreground">{LOCATION}</p>
+                  <p className="text-sm text-muted-foreground">{ADDRESS}</p>
+                  <p className="text-sm text-muted-foreground">{CITY_STATE_ZIP}</p>
                   <p className="text-xs text-muted-foreground mt-1">
                     (between Huntsville and Cullman)
                   </p>

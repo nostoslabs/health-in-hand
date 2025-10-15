@@ -2,6 +2,9 @@ export const SITE_NAME = "Health in Hand";
 export const SITE_DESCRIPTION =
   "Natural healthcare using Nutrition Response Testing, Homeopathy, Neurofeedback, and holistic therapies in Eva, Alabama.";
 export const PHONE = "256-482-2801";
+export const EMAIL = "healthinhand@gmail.com";
+export const ADDRESS = "2363 Lawrence Cove Rd";
+export const CITY_STATE_ZIP = "Eva, AL 35621";
 export const LOCATION = "Eva, Alabama";
 export const BUSINESS_HOURS = {
   weekdays: "Monday - Thursday: 9:00am to 5:00pm",

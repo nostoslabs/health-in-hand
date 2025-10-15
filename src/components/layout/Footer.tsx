@@ -3,7 +3,9 @@ import { Facebook } from "lucide-react";
 import {
   SITE_NAME,
   PHONE,
-  LOCATION,
+  EMAIL,
+  ADDRESS,
+  CITY_STATE_ZIP,
   BUSINESS_HOURS,
   NAVIGATION_LINKS,
   SOCIAL_LINKS,
@@ -22,7 +24,9 @@ export function Footer() {
             <p className="text-sm text-muted-foreground">
               Natural Healthcare Clinic
               <br />
-              {LOCATION}
+              {ADDRESS}
+              <br />
+              {CITY_STATE_ZIP}
             </p>
           </div>
 
@@ -31,6 +35,15 @@ export function Footer() {
             <h3 className="font-semibold text-sm mb-4">Contact</h3>
             <p className="text-sm text-muted-foreground mb-2">
               <strong>Phone:</strong> {PHONE}
+            </p>
+            <p className="text-sm text-muted-foreground mb-2">
+              <strong>Email:</strong>{" "}
+              <a
+                href={`mailto:${EMAIL}`}
+                className="hover:text-primary transition-colors"
+              >
+                {EMAIL}
+              </a>
             </p>
             <p className="text-sm text-muted-foreground mb-4">
               <strong>Hours:</strong>
